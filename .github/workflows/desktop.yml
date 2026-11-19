@@ -112,7 +112,7 @@ jobs:
           GH_REPO: ${{ github.repository }}
           RELEASE_TAG: ${{ github.ref_name }}
         run: |
-          (cd installers && sha256sum ./*) > installers/SHA256SUMS.txt
+          (cd installers && sha256sum -- ./*.AppImage ./*.deb ./*.dmg ./*.exe) > installers/SHA256SUMS.txt
           if draft=$(gh release view "$RELEASE_TAG" --json isDraft --jq .isDraft 2>/dev/null); then
             test "$draft" = true
             gh release upload "$RELEASE_TAG" installers/* --clobber
