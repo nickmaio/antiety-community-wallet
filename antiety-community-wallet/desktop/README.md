@@ -1,36 +1,54 @@
-# Antiety Community Wallet for desktop
+# Antiety Community Wallet
 
-The desktop app runs the standalone Antiety recovery interface locally. Bring your original encrypted Antiety recovery file and its passphrase. The app connects directly to Ethereum Mainnet RPC providers to locate ETH and USDT and review transactions.
+Antiety Community Wallet is a **standalone, self-custodial recovery wallet for Antiety funds**. Use it to find and withdraw ETH and USDT on Ethereum Mainnet if the main Antiety app goes offline or is blocked in your region. You’ll need your encrypted Antiety recovery file, its passphrase, and an internet connection to Ethereum RPC providers.
 
-The desktop app has its own browser storage. To reopen a transaction started on the website, use that same website and browser profile. Keep your recovery file and passphrase for opening the wallet on another device or in the desktop app.
+This public repository contains the browser wallet and its desktop app for Windows, Linux, and macOS. Both connect directly to Ethereum and work without an Antiety account, passkey, or server. The recovery file, passphrase, and private keys stay on your device.
 
-## Desktop builds
+## Get the wallet
 
-GitHub Actions builds installers on pull requests, pushes to main, and manual runs.
+- **Browser.** Open the [hosted Community Wallet](https://wallet.antiety.com/). You can also keep a [local browser copy](https://wallet.antiety.com/wallet-recovery-ethereum.zip) or [host it yourself](https://github.com/nickmaio/antiety-community-wallet/blob/main/antiety-community-wallet/README.md#deploy-to-vercel-or-another-static-host).
+- **Desktop preview.** Sign in to GitHub, choose the latest successful run for `main` under [Desktop builds](https://github.com/nickmaio/antiety-community-wallet/actions/workflows/desktop.yml?query=branch%3Amain), and download your platform’s ZIP from **Artifacts**. Extract the ZIP to get the installer.
 
-| Platform | Download |
+| Platform | Installer |
 | --- | --- |
-| Windows x64 | NSIS installer (.exe) |
-| Linux x64 | AppImage and Debian package (.deb) |
-| macOS Apple Silicon | .dmg for arm64 |
-| macOS Intel | .dmg for x64 |
+| Windows x64 | `.exe` |
+| Linux x64 | `.AppImage` or `.deb` |
+| macOS Apple Silicon | ARM64 `.dmg` |
+| macOS Intel | x64 `.dmg` |
 
-Download installers from the workflow artifacts. A tag matching the desktop version in antiety-community-wallet/desktop/app/package.json creates a draft GitHub release after all four jobs succeed. The draft includes SHA256SUMS.txt. Review the installers before publishing.
+Windows preview installers are unsigned. macOS preview installers use ad hoc signing and lack Apple notarization. Published desktop releases will appear on [GitHub Releases](https://github.com/nickmaio/antiety-community-wallet/releases).
 
-The first builds are for testing. Windows installers are unsigned, and macOS builds use ad hoc signing. Developer ID signing and Apple notarization are needed for normal public macOS distribution. Windows code signing can be configured separately.
+## What you can do
 
-## Build or run locally
+- **Find funds across receiving accounts.** Antiety uses different receiving addresses to help keep payments private. Scan for ETH and USDT across those addresses, check all 65,536 accounts if needed, or open a known receiving account by number and address.
+- **Review and withdraw.** See balances, choose a destination and amount, and review network fees before approving a withdrawal. The wallet guides you through funding ETH for network fees and activating a receiving account when required. It checks on-chain data against two independent RPC providers, which you can change in **Connection Settings**.
+- **Pick up where you left off.** The wallet saves search progress and transaction status locally. Reopen the same desktop installation or the same website in the same browser profile to resume. The browser and desktop versions keep separate records, and clearing site data removes the browser copy.
 
-Install Node.js 24 and run these commands from antiety-community-wallet.
+To start, select your recovery file, enter the passphrase, and choose **Unlock Funds**. Keep the original file and passphrase for use on another device or installation.
+
+## Build from source
+
+Install Node.js 24. From the repository root, run:
 
 ```sh
+cd antiety-community-wallet
 npm ci
-npm --prefix desktop ci
+npm test
 npm run build
+```
+
+The browser build is written to `antiety-community-wallet/dist-wallet-recovery/` relative to the repository root. Run `npm run preview` from `antiety-community-wallet` to serve it locally. See the [browser wallet guide](https://github.com/nickmaio/antiety-community-wallet/blob/main/antiety-community-wallet/README.md) for local ZIP and static hosting instructions.
+
+To launch the desktop app from the same directory:
+
+```sh
+npm --prefix desktop ci
 npm --prefix desktop run stage
 npm --prefix desktop run start
 ```
 
-Run npm --prefix desktop test to check the embedded wallet with a temporary profile. On a headless Linux host, run it through xvfb-run. Run npm --prefix desktop run package on the target operating system to build an installer. Installers are written to antiety-community-wallet/desktop/dist-desktop.
+Run `npm --prefix desktop test` to check the desktop app with a temporary profile. On headless Linux, run it through `xvfb-run`. Run `npm --prefix desktop run package` on the target operating system to build an installer. Desktop installers are written to `antiety-community-wallet/desktop/dist-desktop/` relative to the repository root.
 
-The repository includes the wallet source and the shared modules it requires. From the Antiety workspace, export a fresh source snapshot with npm run export:desktop -- <new-directory> from antiety-community-wallet. The export includes GitHub Actions and the dependency lockfiles.
+## Desktop build automation
+
+GitHub Actions builds installers on pull requests, pushes to `main`, and manual runs. A tag matching the version in [`desktop/app/package.json`](https://github.com/nickmaio/antiety-community-wallet/blob/main/antiety-community-wallet/desktop/app/package.json), such as `v0.1.0`, creates a **draft** release after all four builds pass. The draft includes the installers and `SHA256SUMS.txt` for verification before publication.
