@@ -7,7 +7,7 @@ This public repository contains the browser wallet and its desktop app for Windo
 ## Get the wallet
 
 - **Browser.** Open the [hosted Community Wallet](https://wallet.antiety.com/). You can also keep a [local browser copy](https://wallet.antiety.com/wallet-recovery-ethereum.zip) or [host it yourself](https://github.com/nickmaio/antiety-community-wallet/blob/main/antiety-community-wallet/BROWSER.md#deploy-to-vercel-or-another-static-host).
-- **Desktop preview.** Download the installer for your platform from [GitHub Releases](https://github.com/nickmaio/antiety-community-wallet/releases). To try a newer build from `main`, sign in to GitHub and download the ZIP for your platform under **Artifacts** in the latest successful [Desktop builds](https://github.com/nickmaio/antiety-community-wallet/actions/workflows/desktop.yml?query=branch%3Amain) run.
+- **Desktop.** Download the installer for your platform from the [latest GitHub release](https://github.com/nickmaio/antiety-community-wallet/releases/latest). To try a newer build from `main`, sign in to GitHub and download the ZIP for your platform under **Artifacts** in the latest successful [Desktop builds](https://github.com/nickmaio/antiety-community-wallet/actions/workflows/desktop.yml?query=branch%3Amain) run.
 
 | Platform | Installer |
 | --- | --- |
@@ -16,7 +16,7 @@ This public repository contains the browser wallet and its desktop app for Windo
 | macOS Apple Silicon | ARM64 `.dmg` |
 | macOS Intel | x64 `.dmg` |
 
-Windows preview installers are unsigned. macOS preview installers use ad hoc signing and lack Apple notarization. Use `SHA256SUMS.txt` from the release to verify your download.
+Windows installers are unsigned. macOS installers use ad hoc signing and lack Apple notarization. Use `SHA256SUMS.txt` from the release to verify your download.
 
 ## What you can do
 
