@@ -45,7 +45,7 @@ try {
 `)
 await writeFile(join(out, 'start.ps1'), "$ErrorActionPreference = 'Stop'\n& node (Join-Path $PSScriptRoot 'start.mjs')\n")
 await writeFile(join(out, 'start.cmd'), '@echo off\r\nnode "%~dp0start.mjs"\r\npause\r\n')
-await copyFile(join(root, 'README.md'), join(out, 'README.md'))
+await copyFile(join(root, 'BROWSER.md'), join(out, 'README.md'))
 await writeFile(join(out,'RECOVERY-BUILD.json'),JSON.stringify({network:'Ethereum mainnet',chainIds:[1],slotCount:65536,originalExportsSupported:true,
   antietyBackendRequired:false,antietyLoginIncluded:false,sourceCryptoSha256:cryptoSha256,
   sourceCryptoMetadataSha256:createHash('sha256').update(await readFile(join(workspace,'shared/wallet/generated/walletGenerationCrypto.build.json'))).digest('hex'),

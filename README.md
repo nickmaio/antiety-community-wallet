@@ -6,7 +6,7 @@ This public repository contains the browser wallet and its desktop app for Windo
 
 ## Get the wallet
 
-- **Browser.** Open the [hosted Community Wallet](https://wallet.antiety.com/). You can also keep a [local browser copy](https://wallet.antiety.com/wallet-recovery-ethereum.zip) or [host it yourself](https://github.com/nickmaio/antiety-community-wallet/blob/main/antiety-community-wallet/README.md#deploy-to-vercel-or-another-static-host).
+- **Browser.** Open the [hosted Community Wallet](https://wallet.antiety.com/). You can also keep a [local browser copy](https://wallet.antiety.com/wallet-recovery-ethereum.zip) or [host it yourself](https://github.com/nickmaio/antiety-community-wallet/blob/main/antiety-community-wallet/BROWSER.md#deploy-to-vercel-or-another-static-host).
 - **Desktop preview.** Sign in to GitHub, choose the latest successful run for `main` under [Desktop builds](https://github.com/nickmaio/antiety-community-wallet/actions/workflows/desktop.yml?query=branch%3Amain), and download your platform’s ZIP from **Artifacts**. Extract the ZIP to get the installer.
 
 | Platform | Installer |
@@ -37,7 +37,7 @@ npm test
 npm run build
 ```
 
-The browser build is written to `antiety-community-wallet/dist-wallet-recovery/` relative to the repository root. Run `npm run preview` from `antiety-community-wallet` to serve it locally. See the [browser wallet guide](https://github.com/nickmaio/antiety-community-wallet/blob/main/antiety-community-wallet/README.md) for local ZIP and static hosting instructions.
+The browser build is written to `antiety-community-wallet/dist-wallet-recovery/` relative to the repository root. Run `npm run preview` from `antiety-community-wallet` to serve it locally. See the [browser wallet guide](https://github.com/nickmaio/antiety-community-wallet/blob/main/antiety-community-wallet/BROWSER.md) for local ZIP and static hosting instructions.
 
 To launch the desktop app from the same directory:
 

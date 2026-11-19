@@ -19,8 +19,8 @@ function include(source, output = source) {
 }
 
 const root = 'antiety-community-wallet/'
-for (const name of ['.gitignore', 'index.html', 'README.md', 'package.json', 'package-lock.json', 'vite.config.mjs',
-  'public/favicon.ico', 'public/assets/antiety-logo.png', 'desktop/icon.png', 'desktop/README.md',
+for (const name of ['.gitignore', 'index.html', 'BROWSER.md', 'package.json', 'package-lock.json', 'vite.config.mjs',
+  'public/favicon.ico', 'public/assets/antiety-logo.png', 'desktop/icon.png',
   'desktop/package.json', 'desktop/package-lock.json', 'desktop/electron-builder.yml', 'desktop/git-attributes',
   'desktop/app/main.cjs', 'desktop/app/package.json', 'desktop/stage.mjs', 'desktop/smoke.cjs']) {
   include(root + name)
@@ -46,14 +46,14 @@ for (const name of [
 ]) {
   include(name)
 }
-include(root + 'desktop/README.md', 'README.md')
 include(root + 'desktop/git-attributes', '.gitattributes')
-const workflow = '.github/workflows/desktop.yml'
-const localWorkflow = join(wallet, workflow)
-files.set(workflow, await lstat(localWorkflow).then(() => localWorkflow, error => {
-  if (error.code !== 'ENOENT') throw error
-  return join(workspace, workflow)
-}))
+for (const name of ['README.md', '.github/workflows/desktop.yml']) {
+  const localFile = join(wallet, name)
+  files.set(name, await lstat(localFile).then(() => localFile, error => {
+    if (error.code !== 'ENOENT') throw error
+    return join(workspace, name)
+  }))
+}
 
 for (const source of files.values()) {
   const info = await lstat(source)
