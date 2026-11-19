@@ -1,0 +1,2 @@
+# The recovery build verifies the exact bytes against the pinned SHA-256.
+/shared/wallet/generated/walletGenerationCrypto.js text eol=lf

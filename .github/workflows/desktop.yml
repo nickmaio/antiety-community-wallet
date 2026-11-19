@@ -61,17 +61,12 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y xvfb xauth fakeroot libgtk-3-0t64 libnss3 libasound2t64
       - name: Install dependencies
-        run: |
-          npm ci
-          npm --prefix desktop ci
+        run: npm ci && npm --prefix desktop ci
       - name: Check release tag
         if: startsWith(github.ref, 'refs/tags/')
         run: node -e "if (process.env.GITHUB_REF_NAME !== 'v' + require('./desktop/app/package.json').version) throw Error('The release tag must match the desktop app version')"
       - name: Build and verify wallet
-        run: |
-          npm test
-          npm run build
-          npm --prefix desktop run stage
+        run: npm test && npm run build && npm --prefix desktop run stage
       - name: Test desktop app on Linux
         if: runner.os == 'Linux'
         run: |
