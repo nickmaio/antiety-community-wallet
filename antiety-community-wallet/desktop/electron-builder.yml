@@ -1,0 +1,27 @@
+appId: com.antiety.communitywallet
+productName: Antiety Community Wallet
+directories:
+  app: app
+  output: dist-desktop
+files:
+  - main.cjs
+  - wallet/**/*
+artifactName: Antiety-Community-Wallet-${version}-${os}-${arch}.${ext}
+electronVersion: 45.4.1
+npmRebuild: false
+icon: icon.png
+win:
+  target: nsis
+nsis:
+  oneClick: false
+  perMachine: false
+mac:
+  target: dmg
+  category: public.app-category.utilities
+  identity: '-'
+  notarize: false
+linux:
+  target:
+    - AppImage
+    - deb
+  category: Utility

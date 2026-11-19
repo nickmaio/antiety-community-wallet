@@ -1,0 +1,28 @@
+{
+  "name": "antiety-community-wallet",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "node scripts/build-wallet-recovery.mjs",
+    "preview": "node scripts/serve-wallet-recovery.mjs",
+    "package": "powershell -NoProfile -File scripts/package-wallet-recovery.ps1",
+    "verify": "node scripts/verify-wallet-recovery-package.mjs dist-wallet-recovery",
+    "test": "node --test --test-isolation=none --test-timeout=30000 tests/*.test.mjs",
+    "export:desktop": "node scripts/export-desktop-repo.mjs"
+  },
+  "dependencies": {
+    "ethers": "6.17.0",
+    "prop-types": "15.8.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "6.1.2",
+    "esbuild": "0.28.2",
+    "fake-indexeddb": "6.2.6",
+    "jsdom": "30.1.3",
+    "vite": "8.3.5"
+  }
+}

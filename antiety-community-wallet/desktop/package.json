@@ -1,0 +1,15 @@
+{
+  "name": "antiety-community-wallet-desktop-tools",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "stage": "node stage.mjs",
+    "start": "electron app",
+    "test": "electron smoke.cjs",
+    "package": "electron-builder --config electron-builder.yml --publish never"
+  },
+  "devDependencies": {
+    "electron": "45.4.1",
+    "electron-builder": "26.18.1"
+  }
+}

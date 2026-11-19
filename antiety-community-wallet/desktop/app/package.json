@@ -1,0 +1,9 @@
+{
+  "name": "antiety-community-wallet",
+  "version": "0.1.0",
+  "description": "Independent recovery for Antiety ETH and USDT on Ethereum Mainnet.",
+  "author": { "name": "Antiety", "email": "36361285+nickmaio@users.noreply.github.com" },
+  "homepage": "https://wallet.antiety.com",
+  "main": "main.cjs",
+  "private": true
+}
